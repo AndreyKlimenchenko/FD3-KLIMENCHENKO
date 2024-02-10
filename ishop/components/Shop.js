@@ -6,6 +6,7 @@ import Product from "./Product";
 
 class Shop extends React.Component {
   static propTypes = {
+    shopName: PropTypes.string,
     products: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
@@ -16,10 +17,11 @@ class Shop extends React.Component {
       })
     ),
   };
+  
   render() {
     return (
       <div className="shop-container">
-        <h1>каталог объективов</h1>
+        <h1>{this.props.shopName}</h1>
         <table className="shop-table">
           <tr>
             <th></th>
