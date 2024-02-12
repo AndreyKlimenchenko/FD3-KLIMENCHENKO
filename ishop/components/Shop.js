@@ -23,17 +23,19 @@ class Shop extends React.Component {
       <div className="shop-container">
         <h1>{this.props.shopName}</h1>
         <table className="shop-table">
-          <tr>
-            <th></th>
-            <th>имя</th>
-            <th>цена</th>
-            <th>остаток</th>
-          </tr>
-          {
-            this.props.products.map((item) => {
-              return <Product product={item} key={item.id}/>
-            })
-          }
+          <tbody>
+            <tr>
+              <th></th>
+              <th>имя</th>
+              <th>цена</th>
+              <th>остаток</th>
+            </tr>
+            {
+              this.props.products.map((item) => {
+                return <Product product={item} key={item.id}/>
+              })
+            }
+          </tbody>
         </table>
       </div>
     );
