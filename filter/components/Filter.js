@@ -11,6 +11,7 @@ class Filter extends React.Component {
   state = {
     strings: this.props.strings,
     search: "",
+    isSorted: false,
   };
 
   handleChange = (value) => {
@@ -21,21 +22,31 @@ class Filter extends React.Component {
           return item.includes(value);
         })
       : this.props.strings;
-
+    const sortedArray = newStrings.slice();
     this.setState({
-      strings: newStrings,
+      strings: this.state.isSorted ? sortedArray.sort() : sortedArray,
     });
   };
 
   handleCheckboxChange = (value) => {
     const newArray = this.state.strings.slice();
+    const newStringsArray = this.props.strings.slice();
     const newStrings = value
       ? newArray.sort()
-      : this.props.strings.filter((item) => {
+      : newStringsArray.filter((item) => {
           return item.includes(this.state.search);
         });
     this.setState({
       strings: newStrings,
+      isSorted: value,
+    });
+  };
+
+  handleReset = () => {
+    this.setState({
+      strings: this.props.strings,
+      search: "",
+      isSorted: false,
     });
   };
 
@@ -46,12 +57,16 @@ class Filter extends React.Component {
           <input
             type="checkbox"
             name="order"
+            checked={this.state.isSorted}
             onChange={(event) =>
               this.handleCheckboxChange(event.target.checked)
             }
           />
-          <input onChange={(event) => this.handleChange(event.target.value)} />
-          <button>сброс</button>
+          <input
+            onChange={(event) => this.handleChange(event.target.value)}
+            value={this.state.search}
+          />
+          <button onClick={this.handleReset}>сброс</button>
         </div>
         <div className="strings-container">
           {this.state.strings.map((item) => {
