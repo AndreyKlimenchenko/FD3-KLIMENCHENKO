@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 import "./Product.css";
 
 class Product extends React.Component {
+
   static propTypes = {
+    isSelected: PropTypes.bool,
+    handleSelect: PropTypes.func,
     product: PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string,
@@ -16,7 +19,7 @@ class Product extends React.Component {
 
   render() {
     return (
-      <tr>
+      <tr className={this.props.isSelected ? "tableRowActive" : "tableRow"} onClick={() => this.props.handleSelect(this.props.product.id)}>
         <td><img src={this.props.product.url} alt={this.props.product.title} width={60}/></td>
         <td className="table-cell">{this.props.product.title}</td>
         <td className="table-cell">{this.props.product.price}</td>
