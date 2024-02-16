@@ -10,11 +10,14 @@ class Filter extends React.Component {
 
   state = {
     strings: this.props.strings,
+    search: "",
   };
 
   handleChange = (value) => {
+    this.setState({ search: value });
+    const newArray = this.props.strings.slice();
     const newStrings = value
-      ? this.props.strings.filter((item) => {
+      ? newArray.filter((item) => {
           return item.includes(value);
         })
       : this.props.strings;
@@ -24,11 +27,29 @@ class Filter extends React.Component {
     });
   };
 
+  handleCheckboxChange = (value) => {
+    const newArray = this.state.strings.slice();
+    const newStrings = value
+      ? newArray.sort()
+      : this.props.strings.filter((item) => {
+          return item.includes(this.state.search);
+        });
+    this.setState({
+      strings: newStrings,
+    });
+  };
+
   render() {
     return (
       <div className="filter-container">
         <div className="select-container">
-          <input type="checkbox" name="order" />
+          <input
+            type="checkbox"
+            name="order"
+            onChange={(event) =>
+              this.handleCheckboxChange(event.target.checked)
+            }
+          />
           <input onChange={(event) => this.handleChange(event.target.value)} />
           <button>сброс</button>
         </div>
