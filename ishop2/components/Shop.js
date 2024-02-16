@@ -6,12 +6,23 @@ import Product from "./Product";
 
 const Shop = (props) => {
   const [selectedProductID, setSelectedProductID] = useState('');
+  const [products, setProducts] = useState(props.products);
 
   const handleSelect = (id) => {
     if (id === selectedProductID) {
       setSelectedProductID('');
     } else {
       setSelectedProductID(id)
+    }
+  };
+
+  const handleDelete = (id) => {
+    const response = confirm('Уверены?');
+    if (response) {
+      setProducts(prevState => {
+        const newProducts = prevState.filter((item) => item.id !== id)
+        return newProducts;
+      })
     }
   };
 
@@ -25,12 +36,13 @@ const Shop = (props) => {
             <th>имя</th>
             <th>цена</th>
             <th>остаток</th>
+            <th></th>
           </tr>
-          {props.products.map((item) => {
+          {products.map((item) => {
 
             const isSelected = selectedProductID === item.id;
 
-            return <Product product={item} key={item.id} isSelected={isSelected} handleSelect={handleSelect}/>;
+            return <Product product={item} key={item.id} isSelected={isSelected} handleSelect={handleSelect} handleDelete={handleDelete}/>;
           })}
         </tbody>
       </table>

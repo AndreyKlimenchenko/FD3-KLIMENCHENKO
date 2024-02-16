@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import "./Product.css";
 
 class Product extends React.Component {
-
   static propTypes = {
     isSelected: PropTypes.bool,
     handleSelect: PropTypes.func,
+    handleDelete: PropTypes.func,
     product: PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string,
@@ -19,11 +19,30 @@ class Product extends React.Component {
 
   render() {
     return (
-      <tr className={this.props.isSelected ? "tableRowActive" : "tableRow"} onClick={() => this.props.handleSelect(this.props.product.id)}>
-        <td><img src={this.props.product.url} alt={this.props.product.title} width={60}/></td>
+      <tr
+        className={this.props.isSelected ? "tableRowActive" : "tableRow"}
+        onClick={() => this.props.handleSelect(this.props.product.id)}
+      >
+        <td>
+          <img
+            src={this.props.product.url}
+            alt={this.props.product.title}
+            width={60}
+          />
+        </td>
         <td className="table-cell">{this.props.product.title}</td>
         <td className="table-cell">{this.props.product.price}</td>
         <td className="table-cell">{this.props.product.count}</td>
+        <td>
+          <button
+            onClick={(event) => {
+              event.stopPropagation();
+              this.props.handleDelete(this.props.product.id);
+            }}
+          >
+            удалить
+          </button>
+        </td>
       </tr>
     );
   }
