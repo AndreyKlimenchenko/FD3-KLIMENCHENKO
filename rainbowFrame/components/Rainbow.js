@@ -3,15 +3,10 @@
 import "./Rainbow.css";
 
 class Rainbow extends React.Component {
-  static propTypes = {
-  };
-  
-  render() {
-    return (
-      <div>
+  static propTypes = {};
 
-      </div>
-    );
+  render() {
+    return <div></div>;
   }
 }
 

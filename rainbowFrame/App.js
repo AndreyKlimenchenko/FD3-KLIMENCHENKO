@@ -1,12 +1,6 @@
-﻿import React from 'react';
-import ReactDOM from 'react-dom';
+﻿import React from "react";
+import ReactDOM from "react-dom";
 
-import RainbowBlock from './components/Rainbow';
+import RainbowBlock from "./components/Rainbow";
 
-ReactDOM.render(
-  <RainbowBlock 
-    products={products}
-    shopName="каталог объективов"
-  />
-  , document.getElementById('container') 
-);
+ReactDOM.render(<RainbowBlock />, document.getElementById("container"));
