@@ -9,9 +9,8 @@ class BR2JSX extends React.Component {
   };
 
   render() {
-
     let strArr = this.props.text.split(/(?:<br>|<br\/>|<br\s+\/>)+/);
-    
+
     let arr = [];
 
     for (let i = 0; i <= strArr.length - 1; i++) {
@@ -22,7 +21,7 @@ class BR2JSX extends React.Component {
         arr.push(strArr[i], e);
       }
     }
-    
+
     return <div className="container">{arr}</div>;
   }
 }
