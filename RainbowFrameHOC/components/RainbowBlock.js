@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import RainbowFrame from "./RainbowFrame";
+import { withRainbowFrame } from "./withRainbowFrame";
+import DoubleButton from "./DoubleButton";
 
 class RainbowBlock extends React.Component {
   static propTypes = {
@@ -12,7 +13,7 @@ class RainbowBlock extends React.Component {
   };
 
   render() {
-    let colors = [
+    const colors = [
       "red",
       "orange",
       "yellow",
@@ -21,11 +22,28 @@ class RainbowBlock extends React.Component {
       "blue",
       "purple",
     ];
-    return <RainbowFrame colors={colors}>
-      <button onClick={() => this.props.cbPressed(1)}>{this.props.caption1}</button>
-      {this.props.children}
-      <button onClick={() => this.props.cbPressed(2)}>{this.props.caption2}</button>
-    </RainbowFrame>;
+
+    const FramedDoubleButton = withRainbowFrame(colors)(DoubleButton);
+
+    return (
+      <div>
+        <DoubleButton
+          caption1={this.props.caption1}
+          caption2={this.props.caption2}
+          cbPressed={(num) => alert(num)}
+        >
+          вышел, был сильный
+        </DoubleButton>
+        <br />
+        <FramedDoubleButton
+          caption1="я из лесу"
+          caption2="мороз"
+          cbPressed={(num) => alert(num)}
+        >
+          вышел, был сильный
+        </FramedDoubleButton>
+      </div>
+    );
   }
 }
 
