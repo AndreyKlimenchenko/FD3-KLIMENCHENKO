@@ -1,81 +1,61 @@
-﻿import React from "react";
+﻿import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import "./Filter.css";
+import Controls from "./Controls";
+import List from "./List";
 
-class Filter extends React.Component {
-  static propTypes = {
-    strings: PropTypes.arrayOf(PropTypes.string),
-  };
+const Filter = ({ strings }) => {
+  const [data, setData] = useState(strings);
+  const [search, setSearch] = useState("");
+  const [isSorted, setIsSorted] = useState(false);
 
-  state = {
-    strings: this.props.strings,
-    search: "",
-    isSorted: false,
-  };
-
-  handleChange = (value) => {
-    this.setState({ search: value });
-    const newArray = this.props.strings.slice();
+  const handleChange = (value) => {
+    setSearch(value);
+    const newArray = strings.slice();
     const newStrings = value
       ? newArray.filter((item) => {
           return item.includes(value);
         })
-      : this.props.strings;
+      : strings;
     const sortedArray = newStrings.slice();
-    this.setState({
-      strings: this.state.isSorted ? sortedArray.sort() : sortedArray,
-    });
+    setData(isSorted ? sortedArray.sort() : sortedArray);
   };
 
-  handleCheckboxChange = (value) => {
-    const newArray = this.state.strings.slice();
-    const newStringsArray = this.props.strings.slice();
+  const handleCheckboxChange = (value) => {
+    const newArray = data.slice();
+    const newStringsArray = strings.slice();
     const newStrings = value
       ? newArray.sort()
       : newStringsArray.filter((item) => {
-          return item.includes(this.state.search);
+          return item.includes(search);
         });
-    this.setState({
-      strings: newStrings,
-      isSorted: value,
-    });
+    setIsSorted(value);
+    setData(newStrings);
   };
 
-  handleReset = () => {
-    this.setState({
-      strings: this.props.strings,
-      search: "",
-      isSorted: false,
-    });
+  const handleReset = () => {
+    setData(strings);
+    setSearch("");
+    setIsSorted(false);
   };
 
-  render() {
-    return (
-      <div className="filter-container">
-        <div className="select-container">
-          <input
-            type="checkbox"
-            name="order"
-            checked={this.state.isSorted}
-            onChange={(event) =>
-              this.handleCheckboxChange(event.target.checked)
-            }
-          />
-          <input
-            onChange={(event) => this.handleChange(event.target.value)}
-            value={this.state.search}
-          />
-          <button onClick={this.handleReset}>сброс</button>
-        </div>
-        <div className="strings-container">
-          {this.state.strings.map((item) => {
-            return <div key={item}>{item}</div>;
-          })}
-        </div>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="filter-container">
+      <Controls
+        isSorted={isSorted}
+        search={search}
+        handleReset={handleReset}
+        handleCheckboxChange={handleCheckboxChange}
+        handleChange={handleChange}
+      />
+      <List data={data} />
+    </div>
+  );
+};
+
+Filter.propTypes = {
+  strings: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default Filter;
