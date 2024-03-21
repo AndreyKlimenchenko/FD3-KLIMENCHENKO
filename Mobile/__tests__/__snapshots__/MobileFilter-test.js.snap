@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`работа MobileFilter 1`] = `
+<div
+  className="Filter"
+>
+  <button
+    className="FilterAll"
+    onClick={[Function]}
+  >
+    Все
+  </button>
+  <button
+    className="FilterActive"
+    onClick={[Function]}
+  >
+    Активные
+  </button>
+  <button
+    className="FilterBlocked"
+    onClick={[Function]}
+  >
+    Заблокированные
+  </button>
+</div>
+`;
+
+exports[`работа MobileFilter 2`] = `
+<div
+  className="Filter"
+>
+  <button
+    className="FilterAll"
+    onClick={[Function]}
+  >
+    Все
+  </button>
+  <button
+    className="FilterActive"
+    onClick={[Function]}
+  >
+    Активные
+  </button>
+  <button
+    className="FilterBlocked"
+    onClick={[Function]}
+  >
+    Заблокированные
+  </button>
+</div>
+`;
+
+exports[`работа MobileFilter 3`] = `
+<div
+  className="Filter"
+>
+  <button
+    className="FilterAll"
+    onClick={[Function]}
+  >
+    Все
+  </button>
+  <button
+    className="FilterActive"
+    onClick={[Function]}
+  >
+    Активные
+  </button>
+  <button
+    className="FilterBlocked"
+    onClick={[Function]}
+  >
+    Заблокированные
+  </button>
+</div>
+`;

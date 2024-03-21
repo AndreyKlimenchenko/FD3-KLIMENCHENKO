@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`работа MobileForm 1`] = `
+<div
+  className="MobileForm"
+>
+  <div>
+    <span>
+      Фамилия
+    </span>
+    <input
+      defaultValue="Иванов"
+      type="text"
+    />
+  </div>
+  <div>
+    <span>
+      Имя
+    </span>
+    <input
+      defaultValue="Иван"
+      type="text"
+    />
+  </div>
+  <div>
+    <span>
+      Отчество
+    </span>
+    <input
+      defaultValue="Иванович"
+      type="text"
+    />
+  </div>
+  <div>
+    <span>
+      Баланс
+    </span>
+    <input
+      defaultValue={200}
+      type="number"
+    />
+  </div>
+  <button
+    className="MobileForm-Save"
+    onClick={[Function]}
+  >
+    Сохранить
+  </button>
+  <button
+    className="MobileForm-Cancel"
+    onClick={[Function]}
+  >
+    Отмена
+  </button>
+</div>
+`;
+
+exports[`работа MobileForm 2`] = `
+<button
+  className="MobileForm-Create"
+  onClick={[Function]}
+>
+  Создать
+</button>
+`;
+
+exports[`работа MobileForm 3`] = `
+<div
+  className="MobileForm"
+>
+  <div>
+    <span>
+      Фамилия
+    </span>
+    <input
+      defaultValue="Иванов"
+      type="text"
+    />
+  </div>
+  <div>
+    <span>
+      Имя
+    </span>
+    <input
+      defaultValue="Иван"
+      type="text"
+    />
+  </div>
+  <div>
+    <span>
+      Отчество
+    </span>
+    <input
+      defaultValue="Иванович"
+      type="text"
+    />
+  </div>
+  <div>
+    <span>
+      Баланс
+    </span>
+    <input
+      defaultValue={200}
+      type="number"
+    />
+  </div>
+  <button
+    className="MobileForm-Save"
+    onClick={[Function]}
+  >
+    Сохранить
+  </button>
+  <button
+    className="MobileForm-Cancel"
+    onClick={[Function]}
+  >
+    Отмена
+  </button>
+</div>
+`;
+
+exports[`работа MobileForm 4`] = `
+<button
+  className="MobileForm-Create"
+  onClick={[Function]}
+>
+  Создать
+</button>
+`;
+
+exports[`работа MobileForm 5`] = `
+<div
+  className="MobileForm"
+>
+  <div>
+    <span>
+      Фамилия
+    </span>
+    <input
+      defaultValue="Иванов"
+      type="text"
+    />
+  </div>
+  <div>
+    <span>
+      Имя
+    </span>
+    <input
+      defaultValue="Иван"
+      type="text"
+    />
+  </div>
+  <div>
+    <span>
+      Отчество
+    </span>
+    <input
+      defaultValue="Иванович"
+      type="text"
+    />
+  </div>
+  <div>
+    <span>
+      Баланс
+    </span>
+    <input
+      defaultValue={200}
+      type="number"
+    />
+  </div>
+  <button
+    className="MobileForm-Save"
+    onClick={[Function]}
+  >
+    Сохранить
+  </button>
+  <button
+    className="MobileForm-Cancel"
+    onClick={[Function]}
+  >
+    Отмена
+  </button>
+</div>
+`;
+
+exports[`работа MobileForm 6`] = `
+<button
+  className="MobileForm-Create"
+  onClick={[Function]}
+>
+  Создать
+</button>
+`;
