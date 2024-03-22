@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
 
-let myEvents = new EventEmitter();
+const myEvents = new EventEmitter();
 
 export { myEvents };

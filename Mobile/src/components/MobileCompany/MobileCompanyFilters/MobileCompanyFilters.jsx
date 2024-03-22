@@ -7,7 +7,7 @@ class MobileCompanyFilters extends React.PureComponent {
   };
 
   render() {
-    console.log("render MobileCompanyFilters");
+    console.log("render MobileCompanyFilters Component");
     return (
       <div>
         <button
