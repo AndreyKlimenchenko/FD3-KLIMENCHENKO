@@ -105,6 +105,7 @@ class MobileCompany extends React.PureComponent {
       );
       return {
         clients: [...beforeForClients, updateClient, ...afterForClients],
+        addClientStatus: false,
         processedClients: [
           ...beforeForProcessedClients,
           updateClient,
