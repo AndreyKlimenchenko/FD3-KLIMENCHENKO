@@ -35,6 +35,7 @@ class Client extends React.PureComponent {
         <td>
           {this.props.isEditing ? (
             <input
+              placeholder="surname"
               defaultValue={this.props.data.surname}
               ref={this.surnameRef}
             />
@@ -44,14 +45,14 @@ class Client extends React.PureComponent {
         </td>
         <td>
           {this.props.addClientStatus && this.props.isEditing ? (
-            <input ref={this.nameRef} />
+            <input ref={this.nameRef} placeholder="name" />
           ) : (
             this.props.data.name
           )}
         </td>
         <td>
           {this.props.addClientStatus && this.props.isEditing ? (
-            <input ref={this.patronymicRef} />
+            <input ref={this.patronymicRef} placeholder="middle name" />
           ) : (
             this.props.data.patronymic
           )}
