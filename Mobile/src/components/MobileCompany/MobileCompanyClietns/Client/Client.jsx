@@ -3,8 +3,10 @@ import { myEvents } from '../../../../event';
 
 class Client extends React.PureComponent {
 
-    editedClientNameRef = React.createRef();
-    editedClientBalanceRef = React.createRef();
+    surnameRef = React.createRef();
+    balanceRef = React.createRef();
+    nameRef = React.createRef();
+    patronymicRef = React.createRef();
 
     deleteClient = () => {
         myEvents.emit('EdeleteClient', this.props.data.id);
@@ -15,7 +17,12 @@ class Client extends React.PureComponent {
     }
 
     saveEditClient = () => {
-        myEvents.emit('EsaveEditClient', {...this.props.data, surname: this.editedClientNameRef.current.value, balance: this.editedClientBalanceRef.current.value });
+        const newClient = {...this.props.data, surname: this.surnameRef.current.value, balance: this.balanceRef.current.value };
+        if (this.props.addClientStatus) {
+            newClient.name = this.nameRef.current.value;
+            newClient.patronymic =  this.patronymicRef.current.value;
+        }
+        myEvents.emit('EsaveEditClient', newClient);
     }
 
     render() {
@@ -23,11 +30,11 @@ class Client extends React.PureComponent {
         return (
             <tr>
                 <td>{
-                    this.props.isEditing ? <input defaultValue={this.props.data.surname} ref={this.editedClientNameRef}/> : this.props.data.surname}
+                    this.props.isEditing ? <input defaultValue={this.props.data.surname} ref={this.surnameRef}/> : this.props.data.surname}
                 </td>
-                <td>{this.props.data.name}</td>
-                <td>{this.props.data.patronymic}</td>
-                <td>{this.props.isEditing ? <input defaultValue={this.props.data.balance} ref={this.editedClientBalanceRef} /> : this.props.data.balance}</td>
+                <td>{this.props.addClientStatus && this.props.isEditing ? <input ref={this.nameRef}/> : this.props.data.name}</td>
+                <td>{this.props.addClientStatus && this.props.isEditing ? <input ref={this.patronymicRef}/> : this.props.data.patronymic}</td>
+                <td>{this.props.isEditing ? <input defaultValue={this.props.data.balance} ref={this.balanceRef} /> : this.props.data.balance}</td>
                 <td>
                     {
                         this.props.data.balance >= 0 ? <span>Активный</span> : <span>Заблокированный</span>

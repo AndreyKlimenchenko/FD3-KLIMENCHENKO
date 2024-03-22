@@ -5,7 +5,7 @@ class MobileCompanyClietns extends React.PureComponent {
 
     render() {
         console.log("Render MobileCompanyClietns Component")
-        const clients = this.props.clients.map(item => <Client key={item.id} data={item} isEditing={this.props.editedClient.id === item.id} />)
+        const clients = this.props.clients.map(item => <Client key={item.id} data={item} isEditing={this.props.editedClient.id === item.id} addClientStatus={this.props.addClientStatus} />)
         return (
             <div>
                 <table className="table">

@@ -1,7 +1,6 @@
 import React from "react";
 import MobileCompanyClietns from "./MobileCompanyClietns/MobileCompanyClietns";
 import MobileCompanyFilters from "./MobileCompanyFilters/MobileCompanyFilters";
-import MobileCompanyAddClient from "./MobileCompanyAddClient/MobileCompanyAddClient";
 import { myEvents } from '../../event';
 
 class MobileCompany extends React.PureComponent {
@@ -119,22 +118,29 @@ class MobileCompany extends React.PureComponent {
     }
 
     addClientStatusUpdate = () => {
-        this.setState({
-            addClientStatus: true
+        const newEmptyClient = {
+            balance: 0,
+            id: this.state.clients.length,
+            name: "",
+            patronymic: "",
+            surname: ""
+        }
+        this.setState(({ processedClients }) => {
+            return {
+                processedClients: [...processedClients, newEmptyClient],
+                addClientStatus: true
+            }
         })
+        this.editClient(newEmptyClient)
     }
 
     render() {
-        console.log("Render Mobile Company Clients Component");
+        console.log("Render Mobile Company Clients Component", this.state.processedClients);
         return (
             <div>
                 <MobileCompanyFilters />
-                <MobileCompanyClietns clients={this.state.processedClients} editedClient={this.state.edit} />
-                {
-                    this.state.addClientStatus ?
-                        <MobileCompanyAddClient /> :
-                        <button onClick={this.addClientStatusUpdate} type="button" className="btn btn-secondary btn-add">Добавить Клиента</button>
-                }
+                <MobileCompanyClietns clients={this.state.processedClients} editedClient={this.state.edit} addClientStatus={this.state.addClientStatus} />
+                <button onClick={this.addClientStatusUpdate} type="button" className="btn btn-secondary btn-add">Добавить Клиента</button>
             </div>
         )
     }
