@@ -1,13 +1,18 @@
 import React from "react";
+import { connect } from "react-redux";
 import MobileCompanyClietns from "./MobileCompanyClietns/MobileCompanyClietns";
 import MobileCompanyFilters from "./MobileCompanyFilters/MobileCompanyFilters";
 import { myEvents } from "../../event";
+import {
+  client_create,
+  client_delete,
+  client_update,
+} from "../redux/clientsAC";
 
 class MobileCompany extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      clients: [...this.props.clients],
       filterStatus: 0, // 0 - все, 1 - активные - 2 заблокированные
       edit: {
         status: false,
@@ -44,7 +49,7 @@ class MobileCompany extends React.PureComponent {
 
   filteringClients = (mode) => {
     if (this.state.filterStatus === mode) return; // прежний фильтр равен текущему => ререндер не надо.
-    let updateProcessedClients = [...this.state.clients];
+    let updateProcessedClients = [...this.props.clients];
     if (mode === 1) {
       updateProcessedClients = updateProcessedClients.filter(
         (item) => item.balance >= 0
@@ -62,70 +67,24 @@ class MobileCompany extends React.PureComponent {
   };
 
   deleteClient = (id) => {
-    this.setState(({ clients, processedClients }) => {
-      const idxForClients = clients.findIndex((item) => item.id === id);
-      const beforeForClients = clients.slice(0, idxForClients);
-      const afterForClients = clients.slice(idxForClients + 1);
-      const idxForProcessedClients = processedClients.findIndex(
-        (item) => item.id === id
-      );
-      const beforeForProcessedClients = processedClients.slice(
-        0,
-        idxForProcessedClients
-      );
-      const afterForProcessedClients = processedClients.slice(
-        idxForProcessedClients + 1
-      );
-      return {
-        clients: [...beforeForClients, ...afterForClients],
-        processedClients: [
-          ...beforeForProcessedClients,
-          ...afterForProcessedClients,
-        ],
-      };
-    });
+    this.props.dispatch(client_delete(id));
   };
 
   saveEditClient = (updateClient) => {
-    this.setState(({ clients, processedClients, edit }) => {
-      const idxForClients = clients.findIndex(
-        (item) => item.id === updateClient.id
-      );
-      const beforeForClients = clients.slice(0, idxForClients);
-      const afterForClients = clients.slice(idxForClients + 1);
-      const idxForProcessedClients = processedClients.findIndex(
-        (item) => item.id === updateClient.id
-      );
-      const beforeForProcessedClients = processedClients.slice(
-        0,
-        idxForProcessedClients
-      );
-      const afterForProcessedClients = processedClients.slice(
-        idxForProcessedClients + 1
-      );
-      return {
-        clients: [...beforeForClients, updateClient, ...afterForClients],
-        addClientStatus: false,
-        processedClients: [
-          ...beforeForProcessedClients,
-          updateClient,
-          ...afterForProcessedClients,
-        ],
-        edit: {
-          status: false,
-          id: null,
-        },
-      };
+    this.props.dispatch(client_update(updateClient));
+    this.setState({
+      addClientStatus: false,
+      edit: {
+        status: false,
+        id: null,
+      },
     });
   };
 
   addClient = (newClient) => {
-    this.setState(({ clients }) => {
-      return {
-        clients: [...clients, newClient],
-        processedClients: [...clients, newClient],
-        addClientStatus: false,
-      };
+    this.props.dispatch(client_create(newClient));
+    this.setState({
+      addClientStatus: false,
     });
   };
 
@@ -153,16 +112,14 @@ class MobileCompany extends React.PureComponent {
   addClientStatusUpdate = () => {
     const newEmptyClient = {
       balance: 0,
-      id: this.state.clients.length,
+      id: this.props.clients.length,
       name: "",
       patronymic: "",
       surname: "",
     };
-    this.setState(({ processedClients }) => {
-      return {
-        processedClients: [...processedClients, newEmptyClient],
-        addClientStatus: true,
-      };
+    this.props.dispatch(client_create(newEmptyClient));
+    this.setState({
+      addClientStatus: true,
     });
     this.editClient(newEmptyClient);
   };
@@ -173,7 +130,7 @@ class MobileCompany extends React.PureComponent {
       <div>
         <MobileCompanyFilters />
         <MobileCompanyClietns
-          clients={this.state.processedClients}
+          clients={this.props.clients}
           editedClient={this.state.edit}
           addClientStatus={this.state.addClientStatus}
         />
@@ -189,4 +146,10 @@ class MobileCompany extends React.PureComponent {
   }
 }
 
-export default MobileCompany;
+const mapStateToProps = function (state) {
+  return {
+    clients: state.clients,
+  };
+};
+
+export default connect(mapStateToProps)(MobileCompany);
