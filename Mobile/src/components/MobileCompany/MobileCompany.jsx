@@ -1,7 +1,6 @@
 import React from "react";
 import MobileCompanyClietns from "./MobileCompanyClietns/MobileCompanyClietns";
 import MobileCompanyFilters from "./MobileCompanyFilters/MobileCompanyFilters";
-import MobileCompanyEditClient from "./MobileCompanyEditClient/MobileCompanyEditClient";
 import MobileCompanyAddClient from "./MobileCompanyAddClient/MobileCompanyAddClient";
 import { myEvents } from '../../event';
 
@@ -19,6 +18,7 @@ class MobileCompany extends React.PureComponent {
             processedClients: [...this.props.clients]
         };
     }
+    
 
     componentDidMount() {
         myEvents.addListener("EfilteringClients", this.filteringClients);
@@ -39,7 +39,7 @@ class MobileCompany extends React.PureComponent {
     }
 
     filteringClients = (mode) => {
-        if (this.state.filterStatus === mode) return; // Если прежний фильтр равен текущему, обновление(рендер) не требуется. 
+        if (this.state.filterStatus === mode) return; // прежний фильтр равен текущему => ререндер не надо. 
         let updateProcessedClients = [...this.state.clients];
         if (mode === 1) {
             updateProcessedClients = updateProcessedClients.filter(item => item.balance >= 0)
@@ -88,7 +88,7 @@ class MobileCompany extends React.PureComponent {
     }
 
     addClient = (newClient) => {
-        this.setState(({ clients, processedClients, addClientStatus }) => {
+        this.setState(({ clients }) => {
             return {
                 clients: [...clients, newClient],
                 processedClients: [...clients, newClient],
@@ -107,12 +107,12 @@ class MobileCompany extends React.PureComponent {
         })
     }
 
-    editClient = (id) => {
-        if (this.state.edit.status) return; // Если уже идёт редактирование, то клики на следующике редактирования не работают
+    editClient = (client) => {
         const updateEdit = {
             status: true,
-            id: id
+            id: client.id,
         };
+
         this.setState({
             edit: updateEdit
         });
@@ -125,20 +125,15 @@ class MobileCompany extends React.PureComponent {
     }
 
     render() {
-        console.log('render MobileCompany');
+        console.log("Render Mobile Company Clients Component");
         return (
             <div>
                 <MobileCompanyFilters />
-                <MobileCompanyClietns clients={this.state.processedClients} />
+                <MobileCompanyClietns clients={this.state.processedClients} editedClient={this.state.edit} />
                 {
                     this.state.addClientStatus ?
                         <MobileCompanyAddClient /> :
                         <button onClick={this.addClientStatusUpdate} type="button" className="btn btn-secondary btn-add">Добавить Клиента</button>
-                }
-
-                {
-                    this.state.edit.status &&
-                    <MobileCompanyEditClient client={this.state.processedClients.find(item => item.id === this.state.edit.id)} />
                 }
             </div>
         )

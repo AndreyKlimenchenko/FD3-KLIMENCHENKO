@@ -4,8 +4,8 @@ import Client from "./Client/Client";
 class MobileCompanyClietns extends React.PureComponent {
 
     render() {
-        console.log('render MobileCompanyClietns');
-        const clients = this.props.clients.map(item => <Client key={item.id} data={item} />)
+        console.log("Render MobileCompanyClietns Component")
+        const clients = this.props.clients.map(item => <Client key={item.id} data={item} isEditing={this.props.editedClient.id === item.id} />)
         return (
             <div>
                 <table className="table">
