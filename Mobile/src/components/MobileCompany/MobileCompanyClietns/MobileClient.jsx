@@ -29,7 +29,7 @@ class Client extends React.PureComponent {
   };
 
   render() {
-    console.log("Client component Render");
+    console.log(`${this.props.data.surname} rendering`);
     return (
       <tr>
         <td>

@@ -130,7 +130,7 @@ class MobileCompany extends React.PureComponent {
       <div>
         <MobileCompanyFilters />
         <MobileCompanyClietns
-          clients={this.props.clients}
+          clients={this.state.processedClients}
           editedClient={this.state.edit}
           addClientStatus={this.state.addClientStatus}
         />
