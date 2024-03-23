@@ -1,6 +1,7 @@
 ﻿const ADD_CLIENT = "ADD_CLIENT";
 const UPDATE_CLIENT = "UPDATE_CLIENT";
 const DELETE_CLIENT = "DELETE_CLIENT";
+const FILTERING_CLIENTS = "FILTERING_CLIENTS";
 
 const client_create = function (client) {
   return {
@@ -23,6 +24,13 @@ const client_delete = function (clientId) {
   };
 };
 
+const clients_filter = function (mode) {
+  return {
+    type: FILTERING_CLIENTS,
+    mode,
+  };
+};
+
 export {
   client_create,
   ADD_CLIENT,
@@ -30,4 +38,6 @@ export {
   UPDATE_CLIENT,
   client_delete,
   DELETE_CLIENT,
+  clients_filter,
+  FILTERING_CLIENTS,
 };

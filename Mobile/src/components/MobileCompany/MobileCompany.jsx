@@ -7,19 +7,18 @@ import {
   client_create,
   client_delete,
   client_update,
+  clients_filter,
 } from "../redux/clientsAC";
 
 class MobileCompany extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      filterStatus: 0, // 0 - все, 1 - активные - 2 заблокированные
       edit: {
         status: false,
         id: null,
       },
       addClientStatus: false,
-      processedClients: [...this.props.clients],
     };
   }
 
@@ -48,22 +47,8 @@ class MobileCompany extends React.PureComponent {
   }
 
   filteringClients = (mode) => {
-    if (this.state.filterStatus === mode) return; // прежний фильтр равен текущему => ререндер не надо.
-    let updateProcessedClients = [...this.props.clients];
-    if (mode === 1) {
-      updateProcessedClients = updateProcessedClients.filter(
-        (item) => item.balance >= 0
-      );
-    }
-    if (mode === 2) {
-      updateProcessedClients = updateProcessedClients.filter(
-        (item) => item.balance < 0
-      );
-    }
-    this.setState({
-      processedClients: updateProcessedClients,
-      filterStatus: mode,
-    });
+    if (this.props.filterStatus === mode) return; // прежний фильтр равен текущему => ререндер не надо.
+    this.props.dispatch(clients_filter(mode));
   };
 
   deleteClient = (id) => {
@@ -130,7 +115,7 @@ class MobileCompany extends React.PureComponent {
       <div>
         <MobileCompanyFilters />
         <MobileCompanyClietns
-          clients={this.state.processedClients}
+          clients={this.props.processedClients}
           editedClient={this.state.edit}
           addClientStatus={this.state.addClientStatus}
         />
@@ -149,6 +134,8 @@ class MobileCompany extends React.PureComponent {
 const mapStateToProps = function (state) {
   return {
     clients: state.clients,
+    filterStatus: state.filterStatus,
+    processedClients: state.processedClients,
   };
 };
 

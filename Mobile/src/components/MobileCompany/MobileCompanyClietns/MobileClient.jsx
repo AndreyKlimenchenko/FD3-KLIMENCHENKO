@@ -2,10 +2,13 @@ import React from "react";
 import { myEvents } from "../../../event";
 
 class Client extends React.PureComponent {
-  surnameRef = React.createRef();
-  balanceRef = React.createRef();
-  nameRef = React.createRef();
-  patronymicRef = React.createRef();
+  constructor(props) {
+    super(props);
+    this.surnameRef = React.createRef();
+    this.balanceRef = React.createRef();
+    this.nameRef = React.createRef();
+    this.patronymicRef = React.createRef();
+  }
 
   deleteClient = () => {
     myEvents.emit("EdeleteClient", this.props.data.id);
