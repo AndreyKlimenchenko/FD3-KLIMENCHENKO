@@ -39,7 +39,7 @@ function Header() {
         {isDesktop ? (
           <>
             <div className="headerBtns">
-              <button className="headerBtn">home</button>
+              <button className="headerBtn" onClick={() => navigate("/")}>home</button>
               <button className="headerBtn">about</button>
               <button className="headerBtn">contact</button>
             </div>
