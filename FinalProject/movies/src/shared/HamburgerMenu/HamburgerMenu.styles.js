@@ -15,8 +15,8 @@ export const MenuLabel = styled.label`
 
 export const NavBackground = styled.div`
   position: fixed;
-  top: 6.5rem;
-  right: 6.5rem;
+  top: 0px;
+  right: 0px;
   background-image: radial-gradient(
     ${COLORS.primaryDark},
     ${COLORS.primaryLight}
