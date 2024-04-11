@@ -61,7 +61,7 @@
 }
 
 .SignUpBtn {
-  padding: 13px 40px;
+  padding: 12px 40px;
   font-size: 15px;
   border-radius: 8px;
   border: solid 1px black;
@@ -76,4 +76,56 @@
   color: white;
   border-color: white;
   border: solid 1px;
+}
+
+.rightBtnsContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.headerBtns {
+  display: flex;
+  gap: 20px;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.submitBtn {
+  background-color: #ff4444;
+  color: white;
+  cursor: pointer;
+  border: solid 1px #ff4444;
+}
+
+.submitBtn:hover {
+  border: solid 1px #ff4444;
+  background-color: white;
+  color: #ff4444;
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #ff4444;
+  color: white;
+}
+
+.inputForm {
+  border: solid 1px grey;
+  padding: 12px;
+  outline: none;
+}
+
+.errorInputForm {
+  border: solid 1px #ff4444;
 }
