@@ -9,7 +9,7 @@ function MovieDetails() {
     const data = state.movies.data.find((element) => element.id.toString() === params.id);
     return data
   });
-
+  console.log(movie);
   if (!movie) return null;
   return <div className="container">{movie.title}</div>;
 }

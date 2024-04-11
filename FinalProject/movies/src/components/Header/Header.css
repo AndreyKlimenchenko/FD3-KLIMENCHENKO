@@ -1,0 +1,78 @@
+.header {
+  position: sticky;
+  padding: 20px 5px 20px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ff4444;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.logoName {
+  padding-left: 5px;
+  color: white;
+  text-decoration: none;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.logoName:hover {
+  color: black;
+}
+
+.headerBtn {
+  color: black;
+  text-transform: uppercase;
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.headerBtn:hover {
+  color: white;
+}
+
+.searchContainer {
+  height: 45px;
+  display: flex;
+  align-items: unset;
+}
+
+.headerSearch {
+  border-radius: 0px 8px 8px 0px;
+  padding: 13px 18px;
+  border: solid black;
+  background-color: black;
+  cursor: pointer;
+}
+
+.headerInput {
+  border-radius: 8px 0px 0px 8px;
+  border-color: transparent;
+}
+
+.SignUpBtn {
+  padding: 13px 40px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: solid 1px black;
+  color: white;
+  background-color: black;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.SignUpBtn:hover {
+  background-color: #ff4444;
+  color: white;
+  border-color: white;
+  border: solid 1px;
+}

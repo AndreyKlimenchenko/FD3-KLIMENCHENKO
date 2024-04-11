@@ -8,13 +8,19 @@ function MoviesContainer() {
 
   const movies = useSelector((state) => state.movies);
 
-
-
   return (
     <div className="container">
       <Header />
       {movies.data.map((element) => {
-        return <div key={element.id} onClick={() => navigate(`/${element.id}`)}>{element.title}</div>;
+        return (
+          <div
+            className="movieElement"
+            key={element.id}
+            onClick={() => navigate(`/${element.id}`)}
+          >
+            {element.title}
+          </div>
+        );
       })}
     </div>
   );
