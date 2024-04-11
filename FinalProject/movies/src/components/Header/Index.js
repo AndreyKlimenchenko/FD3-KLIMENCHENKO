@@ -6,6 +6,7 @@ import Modal from "../../shared/modal";
 import RegistrationForm from "./RegistrationForm";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router";
+import HamburgerMenu from "../../shared/HamburgerMenu";
 
 function Header() {
   const [openModal, setOpenModal] = useState(false);
@@ -38,18 +39,6 @@ function Header() {
           <button className="headerBtn">contact</button>
         </div>
         <div className="rightBtnsContainer">
-          <div className="searchContainer">
-            <input className="headerInput" type="text" placeholder="Search.." />
-            <button className="headerSearch" type="submit">
-              <img
-                className="searchIcon"
-                src={search}
-                alt="search"
-                width={18}
-                height={18}
-              />
-            </button>
-          </div>
           {isLoggedIn ? (
             <button className="SignUpBtn" onClick={() => handleLogout()}>
               Log out
@@ -68,6 +57,7 @@ function Header() {
             </>
           )}
         </div>
+        <HamburgerMenu />
       </div>
       <Modal open={openLoginModal} handleClose={() => setOpenLoginModal(false)}>
         <div>Login</div>
