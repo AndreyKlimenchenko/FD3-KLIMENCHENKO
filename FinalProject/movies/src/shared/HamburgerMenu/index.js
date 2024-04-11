@@ -9,19 +9,27 @@ import {
 } from "./HamburgerMenu.styles";
 import { useNavigate } from "react-router";
 
-function HamburgerMenu() {
+function HamburgerMenu({
+  isLoggedIn,
+  setOpenLoginModal,
+  setOpenModal,
+  handleLogout,
+}) {
   const [click, setClick] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleClick = (path = '/') => {
+  const handleClick = (path = "/") => {
     navigate(path);
     setClick((prevState) => !prevState);
   };
 
   return (
     <>
-      <MenuLabel htmlFor="navi-toggle" onClick={() => setClick((prevState) => !prevState)}>
+      <MenuLabel
+        htmlFor="navi-toggle"
+        onClick={() => setClick((prevState) => !prevState)}
+      >
         <Icon clicked={click}>&nbsp;</Icon>
       </MenuLabel>
       <NavBackground clicked={click}>&nbsp;</NavBackground>
@@ -29,20 +37,30 @@ function HamburgerMenu() {
       <Navigation clicked={click}>
         <List>
           <li>
-            <ItemLink onClick={() => handleClick('/')}>
-              Home
-            </ItemLink>
+            <ItemLink onClick={() => handleClick("/")}>Home</ItemLink>
           </li>
           <li>
-            <ItemLink onClick={() => handleClick()}>
-              About
-            </ItemLink>
+            <ItemLink onClick={() => handleClick()}>About</ItemLink>
           </li>
           <li>
-            <ItemLink onClick={() => handleClick()}>
-              Contact
-            </ItemLink>
+            <ItemLink onClick={() => handleClick()}>Contact</ItemLink>
           </li>
+          {isLoggedIn ? (
+            <li>
+              <ItemLink onClick={() => handleLogout()}>Log out</ItemLink>
+            </li>
+          ) : (
+            <>
+              <li>
+                <ItemLink onClick={() => setOpenLoginModal(true)}>
+                  Login
+                </ItemLink>
+              </li>
+              <li>
+                <ItemLink onClick={() => setOpenModal(true)}>Sign Up</ItemLink>
+              </li>
+            </>
+          )}
         </List>
       </Navigation>
     </>

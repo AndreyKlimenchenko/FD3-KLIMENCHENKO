@@ -18,15 +18,23 @@
 }
 
 .logoName {
-  padding-left: 5px;
+  margin-left: 5px;
   color: white;
   text-decoration: none;
   font-size: 35px;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+  transition: color 0.3s ease-in;
+  padding: 0px;
+  line-height: 35px;
+  font-family: SpaceGrotesk-Bold;
+  outline: none;
 }
 
 .logoName:hover {
   color: black;
+  transition: color 0.3s ease-in;
 }
 
 .headerBtn {

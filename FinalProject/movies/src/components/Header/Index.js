@@ -7,6 +7,7 @@ import RegistrationForm from "./RegistrationForm";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router";
 import HamburgerMenu from "../../shared/HamburgerMenu";
+import { useDeviceType } from "../../hooks/useDeviceType";
 
 function Header() {
   const [openModal, setOpenModal] = useState(false);
@@ -14,6 +15,8 @@ function Header() {
   const user = localStorage.getItem("loggedInUser");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+
+  const { isDesktop } = useDeviceType();
 
   useEffect(() => {
     setIsLoggedIn(user);
@@ -33,31 +36,44 @@ function Header() {
             King Movie
           </button>
         </div>
-        <div className="headerBtns">
-          <button className="headerBtn">home</button>
-          <button className="headerBtn">about</button>
-          <button className="headerBtn">contact</button>
-        </div>
-        <div className="rightBtnsContainer">
-          {isLoggedIn ? (
-            <button className="SignUpBtn" onClick={() => handleLogout()}>
-              Log out
-            </button>
-          ) : (
-            <>
-              <button
-                className="SignUpBtn"
-                onClick={() => setOpenLoginModal(true)}
-              >
-                Login
-              </button>
-              <button className="SignUpBtn" onClick={() => setOpenModal(true)}>
-                Sign Up
-              </button>
-            </>
-          )}
-        </div>
-        <HamburgerMenu />
+        {isDesktop ? (
+          <>
+            <div className="headerBtns">
+              <button className="headerBtn">home</button>
+              <button className="headerBtn">about</button>
+              <button className="headerBtn">contact</button>
+            </div>
+            <div className="rightBtnsContainer">
+              {isLoggedIn ? (
+                <button className="SignUpBtn" onClick={() => handleLogout()}>
+                  Log out
+                </button>
+              ) : (
+                <>
+                  <button
+                    className="SignUpBtn"
+                    onClick={() => setOpenLoginModal(true)}
+                  >
+                    Login
+                  </button>
+                  <button
+                    className="SignUpBtn"
+                    onClick={() => setOpenModal(true)}
+                  >
+                    Sign Up
+                  </button>
+                </>
+              )}
+            </div>
+          </>
+        ) : (
+          <HamburgerMenu
+            isLoggedIn={isLoggedIn}
+            setOpenLoginModal={setOpenLoginModal}
+            setOpenModal={setOpenModal}
+            handleLogout={handleLogout}
+          />
+        )}
       </div>
       <Modal open={openLoginModal} handleClose={() => setOpenLoginModal(false)}>
         <div>Login</div>
