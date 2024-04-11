@@ -1,17 +1,27 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./MoviesContainer.css";
 import { useNavigate } from "react-router";
+import { Pagination } from "../../shared/pagination";
+import { moviesLoad } from "../../redux/moviesLoad";
+import spinner from "../../assets/spinner.svg"
 
 function MoviesContainer() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const movies = useSelector((state) => state.movies);
 
+  const handleSetActivePage = (page) => {
+    moviesLoad(dispatch, page)
+  }
+
+  console.log(movies)
+
   return (
     <div className="container">
+      {movies.dataLoad && <img src={spinner} alt="" className="spinner" />}
       <div className="movieContainer">
         {movies.data.map((element) => {
-          console.log(element);
           return (
             <div
               className="movieCard"
@@ -20,11 +30,6 @@ function MoviesContainer() {
             >
                 <div className="moviePoster" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${element.poster_path})`}}/>
               <div className="movieTitle"> {element.title}</div>
-
-              {/* <img
-                src={`https://image.tmdb.org/t/p/original${element.poster_path}`}
-                width="40px"
-              /> */}
               <div>
                 lang:  
                 <span className="movieInfo">{element.original_language}</span>
@@ -39,6 +44,7 @@ function MoviesContainer() {
           );
         })}
       </div>
+      <Pagination pages={movies.totalPages} active={movies.activePage} setActive={(page) => handleSetActivePage(page)} />
     </div>
   );
 }

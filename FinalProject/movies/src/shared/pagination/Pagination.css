@@ -1,0 +1,32 @@
+.pagination {
+  display: flex;
+  gap: 10px;
+}
+
+.paginationButton {
+  border: solid 1px #ff4444;
+  background-color: white;
+  color: #ff4444;
+  width: fit-content;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.paginationButtonActive {
+  background-color: #ff4444;
+  color: white;
+  cursor: pointer;
+  border: solid 1px #ff4444;
+}
+
+.paginationButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,10 +1,10 @@
 import { updateLoadState, updateData } from "./moviesSlice.js";
 
-export async function moviesLoad(dispatch) {
+export async function moviesLoad(dispatch, page = 1) {
   try {
-    dispatch(updateLoadState({ state: 1, error: null }));
+    dispatch(updateLoadState({ dataLoad: true }));
     const url =
-      "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc";
+      `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`;
     const options = {
       method: "GET",
       headers: {
@@ -16,14 +16,14 @@ export async function moviesLoad(dispatch) {
     const response = await fetch(url, options);
     if (response.ok) {
       const data = await response.json();
-      dispatch(updateLoadState({ state: 2, error: null }));
-      dispatch(updateData(data.results));
+      dispatch(updateLoadState({ dataLoad: false }));
+      dispatch(updateData(data));
     } else {
       dispatch(
-        updateLoadState({ state: 3, error: "HTTP error " + response.status })
+        updateLoadState({ dataLoad: false })
       );
     }
   } catch (err) {
-    dispatch(updateLoadState({ state: 3, error: err.message }));
+    dispatch(updateLoadState({ dataLoad: false }));
   }
 }
