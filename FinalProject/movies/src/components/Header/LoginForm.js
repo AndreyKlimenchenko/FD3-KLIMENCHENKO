@@ -1,15 +1,13 @@
 import "./Header.css";
 import { useState } from "react";
 
-function RegistrationForm({ handleClose }) {
+function LoginForm({ handleClose }) {
   const [values, setValues] = useState({
-    name: "",
     email: "",
     password: "",
   });
 
   const [errors, setErrors] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -17,12 +15,7 @@ function RegistrationForm({ handleClose }) {
   const [submitError, setSubmitError] = useState("");
 
   const isButtonDisabled =
-    errors.name ||
-    errors.email ||
-    errors.password ||
-    !values.name ||
-    !values.email ||
-    !values.password;
+    errors.email || errors.password || !values.email || !values.password;
 
   const handleValidateEmail = (value) => {
     const isValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(value);
@@ -48,26 +41,12 @@ function RegistrationForm({ handleClose }) {
     }
   };
 
-  const handleValidateName = (value) => {
-    if (value.length < 2) {
-      setErrors((prevState) => ({
-        ...prevState,
-        name: "Name is not valid!",
-      }));
-    } else {
-      setErrors((prevState) => ({ ...prevState, name: "" }));
-    }
-  };
-
   const handleChange = (event) => {
     if (event.target.name === "email") {
       handleValidateEmail(event.target.value);
     }
     if (event.target.name === "password") {
       handleValidatePassword(event.target.value);
-    }
-    if (event.target.name === "name") {
-      handleValidateName(event.target.value);
     }
     setValues((prevState) => ({
       ...prevState,
@@ -80,33 +59,21 @@ function RegistrationForm({ handleClose }) {
     setSubmitError("");
     const savedUsersData = localStorage.getItem("users");
     const users = savedUsersData ? JSON.parse(savedUsersData) : [];
-    const isUserExist = users.find((user) => user.email === values.email);
-    if (isUserExist) {
-      setSubmitError("User already exist!");
-    } else {
-      const newUsers = [...users, values];
-      localStorage.setItem("users", JSON.stringify(newUsers));
+    const loggedInUser = users.find((user) => user.email === values.email);
+    if (loggedInUser) {
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
       setValues({
-        name: "",
         password: "",
         email: "",
       });
       handleClose();
+    } else {
+      setSubmitError("Email or password is not valid!");
     }
   };
 
   return (
     <form className="form">
-      <div className="formRow">
-        <span>Name</span>
-        <input
-          name="name"
-          value={values.name}
-          onChange={(e) => handleChange(e)}
-          className={errors.name ? "inputForm errorInputForm" : "inputForm"}
-        />
-        {errors.name && <span>{errors.name}</span>}
-      </div>
       <div className="formRow">
         <span>Email address</span>
         <input
@@ -138,10 +105,10 @@ function RegistrationForm({ handleClose }) {
         disabled={isButtonDisabled}
         className="submitBtn"
       >
-        Register
+        Login
       </button>
     </form>
   );
 }
 
-export default RegistrationForm;
+export default LoginForm;

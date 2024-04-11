@@ -1,12 +1,25 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import search from "../../assets/search.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../../shared/modal";
 import RegistrationForm from "./RegistrationForm";
+import LoginForm from "./LoginForm";
 
 function Header() {
   const [openModal, setOpenModal] = useState(false);
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const user = localStorage.getItem("loggedInUser");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setIsLoggedIn(user);
+  }, [user]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser")
+    setIsLoggedIn(false)
+  }
 
   return (
     <>
@@ -35,13 +48,34 @@ function Header() {
               />
             </button>
           </div>
-          <button className="SignUpBtn" onClick={() => setOpenModal(true)}>
-            Sign Up
-          </button>
+          {isLoggedIn ? (
+            <button
+              className="SignUpBtn"
+              onClick={() => handleLogout()}
+            >
+              Log out
+            </button>
+          ) : (
+            <>
+              <button
+                className="SignUpBtn"
+                onClick={() => setOpenLoginModal(true)}
+              >
+                Login
+              </button>
+              <button className="SignUpBtn" onClick={() => setOpenModal(true)}>
+                Sign Up
+              </button>
+            </>
+          )}
         </div>
       </div>
+      <Modal open={openLoginModal} handleClose={() => setOpenLoginModal(false)}>
+        <div>Login</div>
+        <LoginForm handleClose={() => setOpenLoginModal(false)} />
+      </Modal>
       <Modal open={openModal} handleClose={() => setOpenModal(false)}>
-        <div>sign up</div>
+        <div>Sign up</div>
         <RegistrationForm handleClose={() => setOpenModal(false)} />
       </Modal>
     </>
