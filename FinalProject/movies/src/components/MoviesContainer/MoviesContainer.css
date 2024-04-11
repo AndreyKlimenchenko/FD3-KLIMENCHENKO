@@ -1,3 +1,47 @@
-.movieElement {
-    
+.movieContainer {
+    padding-top: 30px;
+    max-width: 90%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.movieCard {
+    max-width: 290px;
+    min-width: 290px;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(241, 241, 6, 0.3);
+    text-align: center;
+    cursor: pointer;
+}
+
+.movieCard:hover {
+    background-color: rgba(241, 241, 6, 0.5);
+    box-shadow: 0px 1px 8px 4px rgba(126, 121, 114, 0.20);
+}
+
+.movieTitle {
+    margin: 17px 0px 10px 0px;
+    font-family: SpaceGrotesk-Bold;
+    font-size: 25px;
+}
+
+.movieInfo {
+    margin-left: 8px;
+    font-family: Cabin-Bold;
+    font-size: 17px;
+}
+
+.moviePoster {
+    width: 270px;
+    height: 330px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

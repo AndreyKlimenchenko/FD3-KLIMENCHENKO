@@ -1,13 +1,58 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: "Cabin-Bold";
+  /* fontWeight = 700 */
+  src: url("./assets/fonts/Cabin-Bold.ttf");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: "Cabin-Medium";
+  /* fontWeight = 500 */
+  src: url("./assets/fonts/Cabin-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Cabin-Regular";
+  /* fontWeight = 400 */
+  src: url("./assets/fonts/Cabin-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Cabin-SemiBold";
+  /* fontWeight = 600 */
+  src: url("./assets/fonts/Cabin-SemiBold.ttf");
+}
+@font-face {
+  font-family: "SpaceGrotesk-Regular";
+  /* fontWeight = 400 */
+  src: url("./assets/fonts/SpaceGrotesk-Regular.ttf");
+}
+
+@font-face {
+  font-family: "SpaceGrotesk-Bold";
+  /* fontWeight = 700 */
+  src: url("./assets/fonts/SpaceGrotesk-Bold.ttf");
+}
+@font-face {
+  font-family: "SpaceGrotesk-Light";
+  /* fontWeight = 300 */
+  src: url("./assets/fonts/SpaceGrotesk-Light.ttf");
+}
+
+@font-face {
+  font-family: "SpaceGrotesk-Medium";
+  /* fontWeight = 500 */
+  src: url("./assets/fonts/SpaceGrotesk-Medium.ttf");
+}
+
+@font-face {
+  font-family: "SpaceGrotesk-SemiBold";
+  /* fontWeight = 600 */
+  src: url("./assets/fonts/SpaceGrotesk-SemiBold.ttf");
+}
+
+body {
+  font-family: Cabin-Regular;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

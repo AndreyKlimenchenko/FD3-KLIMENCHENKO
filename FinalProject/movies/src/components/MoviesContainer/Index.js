@@ -11,17 +11,36 @@ function MoviesContainer() {
   return (
     <div className="container">
       <Header />
-      {movies.data.map((element) => {
-        return (
-          <div
-            className="movieElement"
-            key={element.id}
-            onClick={() => navigate(`/${element.id}`)}
-          >
-            {element.title}
-          </div>
-        );
-      })}
+      <div className="movieContainer">
+        {movies.data.map((element) => {
+          console.log(element);
+          return (
+            <div
+              className="movieCard"
+              key={element.id}
+              onClick={() => navigate(`/${element.id}`)}
+            >
+                <div className="moviePoster" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${element.poster_path})`}}/>
+              <div className="movieTitle"> {element.title}</div>
+
+              {/* <img
+                src={`https://image.tmdb.org/t/p/original${element.poster_path}`}
+                width="40px"
+              /> */}
+              <div>
+                lang:  
+                <span className="movieInfo">{element.original_language}</span>
+              </div>
+              <div>
+                rating:  
+                <span className="movieInfo">
+                  {element.vote_average.toFixed(1)}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
