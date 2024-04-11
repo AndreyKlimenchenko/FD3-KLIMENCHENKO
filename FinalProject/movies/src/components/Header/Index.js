@@ -5,30 +5,32 @@ import { useEffect, useState } from "react";
 import Modal from "../../shared/modal";
 import RegistrationForm from "./RegistrationForm";
 import LoginForm from "./LoginForm";
+import { useNavigate } from "react-router";
 
 function Header() {
   const [openModal, setOpenModal] = useState(false);
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const user = localStorage.getItem("loggedInUser");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoggedIn(user);
   }, [user]);
 
   const handleLogout = () => {
-    localStorage.removeItem("loggedInUser")
-    setIsLoggedIn(false)
-  }
+    localStorage.removeItem("loggedInUser");
+    setIsLoggedIn(false);
+  };
 
   return (
     <>
       <div className="header">
         <div className="logoContainer">
           <img className="logo" src={logo} alt="icon" width={40} height={40} />
-          <a className="logoName" href="#">
+          <button className="logoName" onClick={() => navigate("/")}>
             King Movie
-          </a>
+          </button>
         </div>
         <div className="headerBtns">
           <button className="headerBtn">home</button>
@@ -49,10 +51,7 @@ function Header() {
             </button>
           </div>
           {isLoggedIn ? (
-            <button
-              className="SignUpBtn"
-              onClick={() => handleLogout()}
-            >
+            <button className="SignUpBtn" onClick={() => handleLogout()}>
               Log out
             </button>
           ) : (

@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import "./MoviesContainer.css";
-import Header from "../Header/Index";
 import { useNavigate } from "react-router";
 
 function MoviesContainer() {
@@ -10,7 +9,6 @@ function MoviesContainer() {
 
   return (
     <div className="container">
-      <Header />
       <div className="movieContainer">
         {movies.data.map((element) => {
           console.log(element);

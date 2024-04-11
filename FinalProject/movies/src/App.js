@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router";
 import MovieDetails from "./components/MovieDetails/Index";
 import { useEffect } from "react";
 import { moviesLoad } from "./redux/moviesLoad";
+import Header from "./components/Header/Index";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <Routes>
         <Route path="/" element={<MoviesContainer />} />
         <Route path="/:id" element={<MovieDetails />} />
