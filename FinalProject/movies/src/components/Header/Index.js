@@ -39,7 +39,9 @@ function Header() {
         {isDesktop ? (
           <>
             <div className="headerBtns">
-              <button className="headerBtn" onClick={() => navigate("/")}>home</button>
+              <button className="headerBtn" onClick={() => navigate("/")}>
+                home
+              </button>
               <button className="headerBtn">about</button>
               <button className="headerBtn">contact</button>
             </div>
@@ -76,12 +78,18 @@ function Header() {
         )}
       </div>
       <Modal open={openLoginModal} handleClose={() => setOpenLoginModal(false)}>
-        <div>Login</div>
-        <LoginForm handleClose={() => setOpenLoginModal(false)} />
+        <div className="formTitle">Login</div>
+        <LoginForm
+          open={openLoginModal}
+          handleClose={() => setOpenLoginModal(false)}
+        />
       </Modal>
       <Modal open={openModal} handleClose={() => setOpenModal(false)}>
-        <div>Sign up</div>
-        <RegistrationForm handleClose={() => setOpenModal(false)} />
+        <div className="formTitle">Sign up</div>
+        <RegistrationForm
+          open={openModal}
+          handleClose={() => setOpenModal(false)}
+        />
       </Modal>
     </>
   );

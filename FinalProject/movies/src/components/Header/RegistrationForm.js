@@ -1,7 +1,7 @@
 import "./Header.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function RegistrationForm({ handleClose }) {
+function RegistrationForm({ handleClose, open }) {
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -95,6 +95,21 @@ function RegistrationForm({ handleClose }) {
     }
   };
 
+  useEffect(() => {
+    if (!open) {
+      setValues({
+        name: "",
+        password: "",
+        email: "",
+      });
+      setErrors({
+        name: "",
+        password: "",
+        email: "",
+      });
+    }
+  }, [open]);
+
   return (
     <form className="form">
       <div className="formRow">
@@ -105,7 +120,7 @@ function RegistrationForm({ handleClose }) {
           onChange={(e) => handleChange(e)}
           className={errors.name ? "inputForm errorInputForm" : "inputForm"}
         />
-        {errors.name && <span>{errors.name}</span>}
+        {errors.name && <span className="erorrText">{errors.name}</span>}
       </div>
       <div className="formRow">
         <span>Email address</span>
@@ -115,7 +130,7 @@ function RegistrationForm({ handleClose }) {
           onChange={(e) => handleChange(e)}
           className={errors.email ? "inputForm errorInputForm" : "inputForm"}
         />
-        {errors.email && <span>{errors.email}</span>}
+        {errors.email && <span className="erorrText">{errors.email}</span>}
       </div>
       <div className="formRow">
         <span>Password</span>
@@ -129,7 +144,7 @@ function RegistrationForm({ handleClose }) {
         <span>
           Minimum eight characters, at least one letter and one number
         </span>
-        {errors.password && <span>{errors.password}</span>}
+        {errors.password && <span className="erorrText">{errors.password}</span>}
       </div>
       {submitError && <span>{submitError}</span>}
       <button

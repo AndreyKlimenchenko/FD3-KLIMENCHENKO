@@ -1,7 +1,7 @@
 import "./Header.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function LoginForm({ handleClose }) {
+function LoginForm({ handleClose, open }) {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -14,8 +14,7 @@ function LoginForm({ handleClose }) {
 
   const [submitError, setSubmitError] = useState("");
 
-  const isButtonDisabled =
-    errors.email || errors.password || !values.email || !values.password;
+  const isButtonDisabled = errors.email || !values.email || !values.password;
 
   const handleValidateEmail = (value) => {
     const isValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(value);
@@ -29,24 +28,9 @@ function LoginForm({ handleClose }) {
     }
   };
 
-  const handleValidatePassword = (value) => {
-    const isValid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value);
-    if (!isValid) {
-      setErrors((prevState) => ({
-        ...prevState,
-        password: "Password is not valid!",
-      }));
-    } else {
-      setErrors((prevState) => ({ ...prevState, password: "" }));
-    }
-  };
-
   const handleChange = (event) => {
     if (event.target.name === "email") {
       handleValidateEmail(event.target.value);
-    }
-    if (event.target.name === "password") {
-      handleValidatePassword(event.target.value);
     }
     setValues((prevState) => ({
       ...prevState,
@@ -72,6 +56,19 @@ function LoginForm({ handleClose }) {
     }
   };
 
+  useEffect(() => {
+    if (!open) {
+      setValues({
+        password: "",
+        email: "",
+      });
+      setErrors({
+        password: "",
+        email: "",
+      });
+    }
+  }, [open]);
+
   return (
     <form className="form">
       <div className="formRow">
@@ -82,7 +79,7 @@ function LoginForm({ handleClose }) {
           onChange={(e) => handleChange(e)}
           className={errors.email ? "inputForm errorInputForm" : "inputForm"}
         />
-        {errors.email && <span>{errors.email}</span>}
+        {errors.email && <span className="erorrText">{errors.email}</span>}
       </div>
       <div className="formRow">
         <span>Password</span>
@@ -91,12 +88,11 @@ function LoginForm({ handleClose }) {
           name="password"
           value={values.password}
           onChange={(e) => handleChange(e)}
-          className={errors.password ? "inputForm errorInputForm" : "inputForm"}
+          className="inputForm"
         />
-        <span>
+        <span className="helperText">
           Minimum eight characters, at least one letter and one number
         </span>
-        {errors.password && <span>{errors.password}</span>}
       </div>
       {submitError && <span>{submitError}</span>}
       <button
