@@ -1,4 +1,3 @@
-import "./App.css";
 import MoviesContainer from "./components/MoviesContainer/Index";
 import { useDispatch } from "react-redux";
 

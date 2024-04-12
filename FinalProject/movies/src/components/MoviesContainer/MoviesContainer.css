@@ -46,20 +46,19 @@
   background-size: cover;
 }
 
-
 @keyframes rotate {
-    100% {
-        transform: rotate(1turn);
-    }
+  100% {
+    transform: rotate(1turn);
+  }
 }
 
 .spinner {
-   animation: rotate 1s linear infinite;
-   width: 60px;
-   position: fixed;
-   top: 0px;
-   bottom: 0px;
-   left: 0px;
-   right: 0px;
-   margin: auto;
+  animation: rotate 1s linear infinite;
+  width: 60px;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
 }

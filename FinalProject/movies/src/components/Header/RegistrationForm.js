@@ -144,7 +144,9 @@ function RegistrationForm({ handleClose, open }) {
         <span>
           Minimum eight characters, at least one letter and one number
         </span>
-        {errors.password && <span className="erorrText">{errors.password}</span>}
+        {errors.password && (
+          <span className="erorrText">{errors.password}</span>
+        )}
       </div>
       {submitError && <span>{submitError}</span>}
       <button

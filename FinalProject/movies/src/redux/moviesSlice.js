@@ -1,26 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState={
+const initialState = {
   dataLoad: false,
   data: [],
   totalPages: 20,
   activePage: 1,
-}
+};
 
 export const moviesSlice = createSlice({
-  name: 'movies',
+  name: "movies",
   initialState,
   reducers: {
-
-    updateLoadState: (state,action) => {
+    updateLoadState: (state, action) => {
       state.dataLoad = action.payload.dataLoad;
     },
 
-    updateData: (state,action) => {
+    updateData: (state, action) => {
       state.data = action.payload.results;
       state.activePage = action.payload.page;
     },
-
   },
 });
 

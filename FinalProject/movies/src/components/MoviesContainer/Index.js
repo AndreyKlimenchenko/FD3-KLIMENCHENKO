@@ -3,7 +3,7 @@ import "./MoviesContainer.css";
 import { useNavigate } from "react-router";
 import { Pagination } from "../../shared/pagination";
 import { moviesLoad } from "../../redux/moviesLoad";
-import spinner from "../../assets/spinner.svg"
+import spinner from "../../assets/spinner.svg";
 
 function MoviesContainer() {
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ function MoviesContainer() {
   const movies = useSelector((state) => state.movies);
 
   const handleSetActivePage = (page) => {
-    moviesLoad(dispatch, page)
-  }
+    moviesLoad(dispatch, page);
+  };
 
   return (
     <div className="container">
@@ -26,14 +26,19 @@ function MoviesContainer() {
               key={element.id}
               onClick={() => navigate(`/${element.id}`)}
             >
-                <div className="moviePoster" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${element.poster_path})`}}/>
+              <div
+                className="moviePoster"
+                style={{
+                  backgroundImage: `url(https://image.tmdb.org/t/p/original${element.poster_path})`,
+                }}
+              />
               <div className="movieTitle"> {element.title}</div>
               <div>
-                lang:  
+                lang:
                 <span className="movieInfo">{element.original_language}</span>
               </div>
               <div>
-                rating:  
+                rating:
                 <span className="movieInfo">
                   {element.vote_average.toFixed(1)}
                 </span>
@@ -42,7 +47,13 @@ function MoviesContainer() {
           );
         })}
       </div>
-      {movies.data.length ? <Pagination pages={movies.totalPages} active={movies.activePage} setActive={(page) => handleSetActivePage(page)} /> : null}
+      {movies.data.length ? (
+        <Pagination
+          pages={movies.totalPages}
+          active={movies.activePage}
+          setActive={(page) => handleSetActivePage(page)}
+        />
+      ) : null}
     </div>
   );
 }

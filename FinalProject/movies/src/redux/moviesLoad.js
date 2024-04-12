@@ -3,8 +3,7 @@ import { updateLoadState, updateData } from "./moviesSlice.js";
 export async function moviesLoad(dispatch, page = 1) {
   dispatch(updateLoadState({ dataLoad: true }));
   try {
-    const url =
-      `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`;
+    const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`;
     const options = {
       method: "GET",
       headers: {
@@ -19,9 +18,7 @@ export async function moviesLoad(dispatch, page = 1) {
       dispatch(updateLoadState({ dataLoad: false }));
       dispatch(updateData(data));
     } else {
-      dispatch(
-        updateLoadState({ dataLoad: false })
-      );
+      dispatch(updateLoadState({ dataLoad: false }));
     }
   } catch (err) {
     dispatch(updateLoadState({ dataLoad: false }));
