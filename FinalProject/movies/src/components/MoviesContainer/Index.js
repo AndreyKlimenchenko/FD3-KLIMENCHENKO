@@ -42,7 +42,7 @@ function MoviesContainer() {
           );
         })}
       </div>
-      <Pagination pages={movies.totalPages} active={movies.activePage} setActive={(page) => handleSetActivePage(page)} />
+      {movies.data.length ? <Pagination pages={movies.totalPages} active={movies.activePage} setActive={(page) => handleSetActivePage(page)} /> : null}
     </div>
   );
 }

@@ -56,7 +56,7 @@
 .spinner {
    animation: rotate 1s linear infinite;
    width: 60px;
-   position: absolute;
+   position: fixed;
    top: 0px;
    bottom: 0px;
    left: 0px;

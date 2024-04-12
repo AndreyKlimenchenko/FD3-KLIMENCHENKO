@@ -1,9 +1,8 @@
-.moviePoster {
+.movieItemPoster {
   width: 270px;
-  height: 330px;
+  height: auto;
   margin: 0px auto;
-  background-repeat: no-repeat;
-  background-size: cover;
+  display: block;
 }
 
 .titleDateContainer {
@@ -25,3 +24,4 @@
   font-size: 17px;
   line-height: 30px;
 }
+

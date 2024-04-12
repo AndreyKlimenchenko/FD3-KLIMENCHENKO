@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import "./MovieDetails.css";
 import { useSelector } from "react-redux";
+import defaultPoster from "../../assets/defaultPoster.png";
 
 function MovieDetails() {
   const params = useParams();
@@ -11,7 +12,7 @@ function MovieDetails() {
     );
     return data;
   });
-  
+
   if (!movie) return null;
   return (
     <div className="container">
@@ -19,10 +20,13 @@ function MovieDetails() {
         <span className="movieTitle"> {movie.title}</span>
         <span className="movieDescription"> {movie.release_date}</span>
       </div>
-      <div
-        className="moviePoster"
-        style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.poster_path})`,
+      <img
+        className="movieItemPoster"
+        src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+        alt=""
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null;
+          currentTarget.src = defaultPoster;
         }}
       />
       <div className="movieDescription">{movie.overview}</div>
