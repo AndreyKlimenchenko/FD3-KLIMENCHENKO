@@ -27,7 +27,7 @@ export function Pagination({ active, setActive, pages }) {
 
   const prev = () => {
     if (active === 1) return;
-    if ((active - 1) % pageNumberLimit == 0) {
+    if ((active - 1) % pageNumberLimit === 0) {
       setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
       setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
     }

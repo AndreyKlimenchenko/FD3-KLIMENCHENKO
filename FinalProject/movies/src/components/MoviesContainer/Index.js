@@ -15,8 +15,6 @@ function MoviesContainer() {
     moviesLoad(dispatch, page)
   }
 
-  console.log(movies)
-
   return (
     <div className="container">
       {movies.dataLoad && <img src={spinner} alt="" className="spinner" />}

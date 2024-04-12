@@ -1,6 +1,5 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import search from "../../assets/search.svg";
 import { useEffect, useState } from "react";
 import Modal from "../../shared/modal";
 import RegistrationForm from "./RegistrationForm";

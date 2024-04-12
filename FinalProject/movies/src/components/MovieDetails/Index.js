@@ -11,7 +11,7 @@ function MovieDetails() {
     );
     return data;
   });
-  console.log(movie);
+  
   if (!movie) return null;
   return (
     <div className="container">

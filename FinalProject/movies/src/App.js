@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     moviesLoad(dispatch, 1);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">

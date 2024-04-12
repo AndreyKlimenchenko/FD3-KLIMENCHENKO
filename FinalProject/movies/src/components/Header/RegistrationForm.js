@@ -25,7 +25,7 @@ function RegistrationForm({ handleClose, open }) {
     !values.password;
 
   const handleValidateEmail = (value) => {
-    const isValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(value);
+    const isValid = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(value);
     if (!isValid) {
       setErrors((prevState) => ({
         ...prevState,
