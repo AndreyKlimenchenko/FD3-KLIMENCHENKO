@@ -7,8 +7,10 @@ import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router";
 import HamburgerMenu from "../../shared/HamburgerMenu";
 import { useDeviceType } from "../../hooks/useDeviceType";
+import ContactUs from "./ContactUsForm";
 
 function Header() {
+  const [openContactModal, setOpenContactModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const user = localStorage.getItem("loggedInUser");
@@ -41,8 +43,12 @@ function Header() {
               <button className="headerBtn" onClick={() => navigate("/")}>
                 home
               </button>
-              <button className="headerBtn">about</button>
-              <button className="headerBtn">contact</button>
+              <button
+                className="headerBtn"
+                onClick={() => setOpenContactModal(true)}
+              >
+                contact us
+              </button>
             </div>
             <div className="rightBtnsContainer">
               {isLoggedIn ? (
@@ -72,6 +78,7 @@ function Header() {
             isLoggedIn={isLoggedIn}
             setOpenLoginModal={setOpenLoginModal}
             setOpenModal={setOpenModal}
+            setOpenContactModal={setOpenContactModal}
             handleLogout={handleLogout}
           />
         )}
@@ -88,6 +95,13 @@ function Header() {
         <RegistrationForm
           open={openModal}
           handleClose={() => setOpenModal(false)}
+        />
+      </Modal>
+      <Modal open={openContactModal} handleClose={() => setOpenContactModal(false)}>
+        <div className="formTitle">Contact Us</div>
+        <ContactUs
+          open={openContactModal}
+          handleClose={() => setOpenContactModal(false)}
         />
       </Modal>
     </>

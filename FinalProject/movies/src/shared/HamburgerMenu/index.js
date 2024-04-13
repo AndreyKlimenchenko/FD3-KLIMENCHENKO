@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 function HamburgerMenu({
   isLoggedIn,
   setOpenLoginModal,
+  setOpenContactModal,
   setOpenModal,
   handleLogout,
 }) {
@@ -30,20 +31,23 @@ function HamburgerMenu({
         htmlFor="navi-toggle"
         onClick={() => setClick((prevState) => !prevState)}
       >
-        <Icon clicked={click}>&nbsp;</Icon>
+        <Icon $clicked={click}>&nbsp;</Icon>
       </MenuLabel>
-      <NavBackground clicked={click}>&nbsp;</NavBackground>
+      <NavBackground $clicked={click}>&nbsp;</NavBackground>
 
-      <Navigation clicked={click}>
+      <Navigation $clicked={click}>
         <List>
           <li>
             <ItemLink onClick={() => handleClick("/")}>Home</ItemLink>
           </li>
           <li>
-            <ItemLink onClick={() => handleClick()}>About</ItemLink>
-          </li>
-          <li>
-            <ItemLink onClick={() => handleClick()}>Contact</ItemLink>
+            <ItemLink
+              onClick={() => {
+                setOpenContactModal(true);
+              }}
+            >
+              Contact us
+            </ItemLink>
           </li>
           {isLoggedIn ? (
             <li>
